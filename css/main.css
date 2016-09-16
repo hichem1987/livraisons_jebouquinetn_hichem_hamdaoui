@@ -1,0 +1,34 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.logo-jebouquinetn {
+    width: 200px;
+    height: 105px;
+}
+
+.center-content {
+    text-align: center;
+}
+#tokokoo-google-map{
+    width: 250px;
+    height: 250px;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    overflow: hidden; 
+    margin:auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
