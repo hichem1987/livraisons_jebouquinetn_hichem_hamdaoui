@@ -1,0 +1,28 @@
+/*
+the author of the project
+Hichem Hamdaoui
+Email:hamdaoui.hichem@gmail.com
+*/
+/* 
+    Created on : 10 juil. 2016, 17:03:29
+    Author     : HP
+*/
+.logo-jebouquinetn {
+    width: 200px;
+    height: 105px;
+}
+
+.center-content {
+    text-align: center;
+}
+#tokokoo-google-map{
+    width: 250px;
+    height: 250px;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    overflow: hidden; 
+    margin:auto;
+}
+button.ajoutpanier {
+    margin: auto;
+}

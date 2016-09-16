@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" ng-app="appJeBouquine">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="app/Content/bootstrap.min.css">
+        <style>
+            /*            body {
+                            padding-top: 50px;
+                            padding-bottom: 20px;
+                        }*/
+        </style>
+        <link rel="stylesheet" href="app/Content/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="app/Content/app.css">
+        <link rel="stylesheet" href="app/Content/style.css">
+        <script src="app/bower_components/angular/angular.min.js"></script>
+    <script src="app/bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="app/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="app/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="app/js/toaster.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/Route.js"></script>
+    <!--controlleur js-->
+    <script src="app/js/Controleur/MainControleur.js"></script>
+    <script src="app/js/Controleur/LivresControleur.js"></script>
+    <script src="app/js/Controleur/DetailControleur.js"></script>
+    <!--fin controlleurs js-->
+    <!--services js-->
+    <script src="app/js/Service/livreservice.js"></script>
+    <script src="app/js/Service/panierservice.js"></script>
+    <!--fin service js-->
+    <!--filtre js-->
+    <script src="app/js/filtre/PrixFiltre.js"></script>
+    <!--fin filtre js-->
+    <!--directive js-->
+    <script src="app/js/Directive/AdresseDirective.js"></script>
+    <script src="app/js/Directive/horlogeDirective.js"></script>
+
+    </head>
+    <body ng-controller="mainControleur">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!--entete-->
+        <header role="banner" class="site-header cl" id="masthead">
+            <div class="header-top use-logo app">
+                <div class="container">
+                    <h1 id="site-logo">
+                        <a rel="home" title="jebouquinetn" href="index.html">
+                            <img alt="jebouquinetn" src="app/img/jebouquinetn.png" class="logo logo-jebouquinetn">
+                        </a>
+                    </h1>
+                    <nav class="wrap-account-top"><ul class="account-top">
+                            <li title="Mon compte" class="my-account use-sprite"><a href="#/authentification">Mon compte</a></li>
+
+
+ 
+                            <li class="my-cart use-sprite">
+
+                                <a href="#" class="cart-text">Mon panier<span class="mycart">{{NombresLivres()}}</span>
+                                </a>
+
+
+                                <span class="mycart">{{NombresLivres()}}</span>
+
+                                <!-- Dropdown Cart  -->
+                                <div class="widget woocommerce widget_shopping_cart"><div class="widget_shopping_cart_content">
+
+                            <div class="shopping-cart">
+                                <ul class="product_cart_list">
+                                     <li ng-repeat="item in Panier">
+                                        <a>
+                                            <img src="http://placehold.it/70x80&text=image" alt="image" />{{item.Nom}}
+                                        </a>
+                                        <a href="" ng-click="SupprimerLivre(item)">
+                                            <span class="remove fa fa-times"
+                                                  style="color:#ffffff;background-color:red"></span>
+                                        </a>
+                                        <div class="product-details">
+                                            <p class="quantity">
+                                                <span class="amount">{{item.Prix}} TND</span> X
+                                                {{item.Quantite}}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <p class="total" ng-show="Panier.length !=0">Total<span class="amount">{{CalculerMontantTotal()}} TND</span></p>
+                                <p class="total" ng-show="Panier.length == 0 ">Aucun &eacute;l&eacute;ment dans le panier</p>
+                                <p class="buttons" ng-show="Panier.length !=0">
+                                    <a href="#">Valider</a>
+                                </p>
+                            </div>
+
+
+                                    </div></div>								</li>
+
+
+                            <li class="search use-sprite">
+                                <a class="open-search" href="#">open</a>
+                                <ul class="data-search">
+                                    <li>
+                                        <div class="search-top">
+
+                                            <form role="search" action="http://tokokoodemo.us/raakbookoo/" method="get" id="searchform" class="searchform">
+                                                <label for="s" class="assistive-text">Search</label>
+                                                <input type="text" name="s" id="s" placeholder="Search" class="input-text">
+                                                <input type="submit" name="submit" id="searchsubmit" value="Search">
+                                            </form><!-- .searchform -->											</div><!-- End .top-search -->
+                                    </li>
+                                </ul><!-- End .data-search -->
+                            </li>
+                        </ul><!-- End .account -->
+                    </nav><!-- End Nav -->
+                </div><!-- .container -->
+            </div>
+            <!--fin entente-->
+            <!--menu-->
+            <div class="access-wrap">
+                <div class="container">
+
+                    <nav role="navigation" id="access" class="app">
+                        <h3 class="assistive-text">Main menu</h3>
+                        <div class="menu-menu-container">
+                            <ul class="menu" id="menu-menu">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1829 current_page_item menu-item-2151" id="menu-item-2151"><a href="index.html">Accueil</a></li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1829  menu-item-2151" id="menu-item-2151"><a href="index.html">Tous les livres</a></li>
+                                <!--                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2324 have-submenu have-sub-menu" id="menu-item-2324"><a href="#">Tous les livres<span class="sub-ico"> +</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2325" id="menu-item-2325"><a href="http://tokokoodemo.us/raakbookoo/product-category/design-2/">Design</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2471" id="menu-item-2471"><a href="http://tokokoodemo.us/raakbookoo/product-category/resource-2/">Resource</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2472" id="menu-item-2472"><a href="http://tokokoodemo.us/raakbookoo/product-category/web-2/">Web</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2518" id="menu-item-2518"><a href="http://tokokoodemo.us/raakbookoo/product-category/advance/">Advance</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2519" id="menu-item-2519"><a href="http://tokokoodemo.us/raakbookoo/product-category/beginner/">Beginner</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2520" id="menu-item-2520"><a href="http://tokokoodemo.us/raakbookoo/product-category/programming/">Programming</a></li>
+                                    </ul>
+                                </li>-->
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2324 have-submenu have-sub-menu"><a href="http://tokokoodemo.us/raakbookoo/blog/">Cat&eacute;gories</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2325" id="menu-item-2325"><a href="#/LesLivres/Jeunesse">Web</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2471" id="menu-item-2471"><a href="#/LesLivres/SciencesTechniques">Programmation</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2472" id="menu-item-2472"><a href="#/LesLivres/DroitEconomieGestion">D&eacute;butants</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2518" id="menu-item-2518"><a href="#/LesLivres/design">Design</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2519" id="menu-item-2519"><a href="#/LesLivres/ScolairePedagogie">Certifications</a></li>
+                                    </ul>                            
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1829  menu-item-2151" id="menu-item-2151"><a href="index.html">&Abreve; propos de nous</a></li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1829  menu-item-2151" id="menu-item-2151"><a href="index.html">Contactez nous</a></li>
+                            </ul></div>	</nav>
+                    <div class="cl"></div>
+                    <nav id="mobile-menu">
+                        <span id="mobile-menu-btn2"></span><div class="mobile-menu-wrap"><ul><li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1829 current_page_item menu-item-2151" id="menu-item-2151"><a href="http://tokokoodemo.us/raakbookoo/">Home</a></li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2158 have-submenu have-sub-menu" id="menu-item-2158"><a href="http://tokokoodemo.us/raakbookoo/shop/">Shop<span class="sub-ico"> +</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2176" id="menu-item-2176"><a href="http://tokokoodemo.us/raakbookoo/shop-v2/">Shop v2</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2175" id="menu-item-2175"><a href="http://tokokoodemo.us/raakbookoo/shop-v3/">Shop v3</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2186" id="menu-item-2186"><a href="http://tokokoodemo.us/raakbookoo/shop-v3-left-sidebar/">Shop v3 Left Sidebar</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2174 have-submenu have-sub-menu" id="menu-item-2174"><a href="#">Portfolio<span class="sub-ico"> +</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2173" id="menu-item-2173"><a href="http://tokokoodemo.us/raakbookoo/portfolio-v1/">Portfolio v1</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2172" id="menu-item-2172"><a href="http://tokokoodemo.us/raakbookoo/portfolio-v2/">Portfolio v2</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2171" id="menu-item-2171"><a href="http://tokokoodemo.us/raakbookoo/portfolio-v3/">Portfolio v3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2152 have-submenu have-sub-menu" id="menu-item-2152"><a href="#">Page Template<span class="sub-ico"> +</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2116" id="menu-item-2116"><a href="http://tokokoodemo.us/raakbookoo/archives/">Archives</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2119" id="menu-item-2119"><a href="http://tokokoodemo.us/raakbookoo/contact/">Contact</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2117" id="menu-item-2117"><a href="http://tokokoodemo.us/raakbookoo/shortcodes/">Shortcodes</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2110 have-submenu have-sub-menu" id="menu-item-2110"><a href="http://tokokoodemo.us/raakbookoo/my-account/">My Account<span class="sub-ico"> +</span></a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2111" id="menu-item-2111"><a href="http://tokokoodemo.us/raakbookoo/my-account/logout/">Logout</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2112" id="menu-item-2112"><a></a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2113" id="menu-item-2113"><a></a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2114" id="menu-item-2114"><a></a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2115" id="menu-item-2115"><a></a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2215" id="menu-item-2215"><a href="http://tokokoodemo.us/raakbookoo/blog/">Blog</a></li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-2324 have-submenu have-sub-menu" id="menu-item-2324"><a href="#">Book Categories<span class="sub-ico"> +</span></a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2325" id="menu-item-2325"><a href="http://tokokoodemo.us/raakbookoo/product-category/design-2/">Design</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2471" id="menu-item-2471"><a href="http://tokokoodemo.us/raakbookoo/product-category/resource-2/">Resource</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2472" id="menu-item-2472"><a href="http://tokokoodemo.us/raakbookoo/product-category/web-2/">Web</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2518" id="menu-item-2518"><a href="http://tokokoodemo.us/raakbookoo/product-category/advance/">Advance</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2519" id="menu-item-2519"><a href="http://tokokoodemo.us/raakbookoo/product-category/beginner/">Beginner</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-2520" id="menu-item-2520"><a href="http://tokokoodemo.us/raakbookoo/product-category/programming/">Programming</a></li>
+                                    </ul>
+                                </li>
+                            </ul></div></nav><!-- .site-navigation .primary-navigation -->
+
+                </div><!-- End .container -->
+            </div>        
+            <!--fin menu-->
+        </header>
+        <div class="mobile-menu-open-wrap"><span id="mobile-menu-btn"></span></div>
+        <!--    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+              <div class="container">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <form class="navbar-form navbar-right" role="form">
+                    <div class="form-group">
+                      <input type="text" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                  </form>
+                </div>/.navbar-collapse 
+              </div>
+            </nav>-->
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <!--        <div class="jumbotron">
+                    <div class="container">
+                        <h1>Hello, world!</h1>
+                        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                    </div>
+                </div>-->
+
+        <div class="container">
+            <!-- Example row of columns -->
+            <!--            <div class="row">
+                            <div class="col-md-4">
+                                <h2>Heading</h2>
+                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <h2>Heading</h2>
+                                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <h2>Heading</h2>
+                                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+                            </div>
+                        </div>-->
+
+            <hr>
+            <div id="main"  ng-controller="mainControleur">
+        <div ng-view> </div>
+            </div>
+            <div class="widget-bottom app">
+                <div class="container">
+                    <div class='row'>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <aside class="widget contact-detail" id="tokokoo_contact_widget-2"><div class="widget-wrap widget-inside center-content">
+                                    <h3 class="widget-title">Contact info</h3>
+                                    <p>Jalan piit No 1,<br>
+                                        Sadang Serang, Coblong<br>
+                                        Bandung Tunisie 40133</p>
+                                    <p class="contact-email">support@jebouquine.tn</p>
+                                    <p class="contact-phone">+216 53 398 969</p>
+                                    <p class="contact-fax">+216 53 398 969</p></div></aside>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <aside class="widget opening-hours" id="tokokoo_opening_hours_widget-2">
+                                <div class="widget-wrap widget-inside center-content">
+                                    <h3 class="widget-title">Horaire de travail</h3>
+                                    <ul class="no-list-style"><li><span class="day">Lundi: </span>08:00 - 17:00</li>
+                                        <li><span class="day">Mardi: </span>08:00 - 17:00</li>
+                                        <li><span class="day">Mercredi: </span>08:00 - 17:00</li>
+                                        <li><span class="day">Jeudi: </span>08:00 - 17:00</li>
+                                        <li><span class="day">Vendredi: </span>08:00 - 17:00</li>
+                                        <li><span class="day">Samedi: </span>08:00 - 22:00</li>
+                                        <li><span class="day">Dimanche: </span>08:00 - 22:00</li></ul>
+                                </div>
+                            </aside>
+                        </div>
+
+
+                        <div class="col-lg-4 col-md-4 col-xs-12" >
+                            <aside class="widget google-maps" id="tokokoo_google_maps-2"><div class="widget-wrap widget-inside center-content"><h3 class="widget-title">Our Shops</h3>
+                                    <div class="tokokoo-google-widget center-block">
+                                        <script>
+                                            var sci_google_zoom = "15";
+                                            var sci_google_address = "indonesia west java bandung ";
+                                        </script>
+                                        <div id="tokokoo-google-map">
+                                        </div>
+                                    </div>
+                                </div></aside>				
+                        </div>
+
+                    </div>
+                </div><!-- End .container -->
+            </div>            
+            <footer>
+                <p>&copy; Company 2015</p>
+            </footer>
+        </div> <!-- /container -->      
+        <!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        
+                <script src="js/vendor/bootstrap.min.js"></script>-->
+
+    <script src="app/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>   
+    <script src="app/scripts/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </body>
+</html>

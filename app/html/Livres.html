@@ -1,0 +1,120 @@
+<div class="header-bottom">
+
+    <div class="container">
+
+
+        <div itemprop="breadcrumb" class="breadcrumb-trail breadcrumbs"><span class="trail-begin"><a rel="home" title="jebouquine.tn" href="index.html">Accueil</a></span>
+            <span class="sep">/</span> <span class="trail-end">Design</span>
+        </div>
+
+        <h1 class="page-title">Design</h1>
+
+
+    </div><!-- .container -->
+
+    <div class="featured-search first-style for-all-page">
+
+        <div class="searchform">
+
+            <form role="search" method="get" id="searchform" action="#">
+                <div>
+                    <span class="text-search">
+                        besoin d'un livre pr&eacute;cis
+                    </span>
+
+                    <label class="screen-reader-text" for="s">Chercher</label>
+                    <input type="text" value="" name="s" class="input-text" id="s">
+
+                    <select class="postform" id="product_cat" name="product_cat">
+                        <option value="0">Toutes Cat&eacute;gories</option>
+                        <option selected="selected" value="design-2" class="level-0">Design</option>
+                        <option value="web-2" class="level-0">Web</option>
+                        <option value="resource-2" class="level-0">Resource</option>
+                        <option value="programming" class="level-0">Programming</option>
+                        <option value="beginner" class="level-0">Beginner</option>
+                        <option value="advance" class="level-0">Advance</option>
+                    </select>
+
+                    <select class="postform" id="authors" name="authors">
+                        <option selected="selected" value="0">Tous auteurs</option>
+                        <option value="bjorgvin-benediktsson" class="level-0">Björgvin Benediktsson</option>
+                        <option value="peter-tellone" class="level-0">Peter Tellone</option>
+                        <option value="donna-spencer" class="level-0">Donna Spencer</option>
+                        <option value="collis" class="level-0">Collis</option>
+                        <option value="skellie" class="level-0">Skellie</option>
+                        <option value="ronald-keating" class="level-0">Ronald Keating</option>
+                    </select>
+
+                    <input type="submit" id="searchsubmit" value="Chercher livre">
+                    <input type="hidden" value="product" name="post_type">
+
+                </div>
+
+            </form>
+
+        </div><!-- End .searchform -->
+
+    </div>
+
+</div><!-- End .featured-search .first-style-->
+
+
+
+<hr>
+
+<div class="site-main">
+    <div class="container">
+        <section class="content-area no-sidebar" id="primary">
+            <div class="site-content hfeed" id="content">
+                <div class="home-featured cl">
+
+                    <div class="col-lg-12" >
+
+
+
+                        <!-- Get Featured Product -->
+
+
+                        <ul class="wrap-items style-i cl app">
+
+                            <li class="list-item first post-2321 product type-product status-publish has-post-thumbnail authors-collis authors-donna-spencer authors-skellie publisher-rockablepress product_cat-web-2 product_tag-design product_tag-resource product_tag-web sale featured taxable shipping-taxable purchasable product-type-variable product-cat-web-2 product-tag-design product-tag-resource product-tag-web has-default-attributes has-children instock" ng-repeat="item in Livres| orderBy : 'Nom'">
+
+                                <a href="#"> </a>
+                                <div class="inner">
+                                    <a href="#">
+                                        <figure class="item-img">
+
+                                            <span class="onsale">Disponible</span>
+                                            <img width="114" height="150" src="app/img/livres/BookCover-1-160x210.jpg" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="BookCover 1">
+                                            <span class="block"></span></figure>
+
+                                    </a>
+                                    <div class="item-data">
+                                        <h2 class="item-title"><a href="#"></a>
+                                            <a href="#/Detail/{{item.Id}}">{{item.Nom}}</a></h2>
+                                        <span class="item-meta"></span>
+
+                                        <div class="item-block">
+                                            <div class="inner-block">
+                                                <span class="price"><span class="amount">{{item.Prix}}DT</span></span>
+                                                <input type="hidden" class="form-control" ng-model="item.Quantite"  ng-init="item.Quantite=1" >
+        
+                                                <button rel="nofollow" type="button" ng-click='AjouterLivre(item)' data-product_sku="123SU" class="button ajoutpanier add-to-cart add_to_cart_button  product_type_simple  ajax_add_to_cart">Ajout panier</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- End .item-data -->	
+                                </div><!-- End .inner -->
+                            </li>									
+                         </ul>
+
+
+                    </div><!-- End .featured-left -->
+
+                    <!-- Testimonials section -->
+
+                    <!-- End .featured-right -->
+                </div>  
+            </div>
+        </section>
+    </div>
+</div>

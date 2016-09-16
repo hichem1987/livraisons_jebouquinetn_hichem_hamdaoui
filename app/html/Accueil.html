@@ -1,0 +1,93 @@
+<div class="site-main">
+                <div class="container">
+                    <section id="primary" class="content-area no-sidebar">
+                        <div id="content" class="site-content hfeed">
+                            <div class="home-featured cl">
+
+                                <div class="featured-left">
+
+                                    <h2 class="title-featured">Livre exclusive du mois</h2>
+
+                                    <!-- Get Featured Product -->
+
+
+                                    <ul class="wrap-items style-i cl app">
+
+                            <li class="list-item first post-2321 product type-product status-publish has-post-thumbnail authors-collis authors-donna-spencer authors-skellie publisher-rockablepress product_cat-web-2 product_tag-design product_tag-resource product_tag-web sale featured taxable shipping-taxable purchasable product-type-variable product-cat-web-2 product-tag-design product-tag-resource product-tag-web has-default-attributes has-children instock" ng-repeat="item in Livres| orderBy : 'Nom'">
+
+                                <a href="#"> </a>
+                                <div class="inner">
+                                    <a href="#">
+                                        <figure class="item-img">
+
+                                            <span class="onsale">Disponible</span>
+                                            <img width="114" height="150" src="app/img/livres/BookCover-1-160x210.jpg" class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="BookCover 1">
+                                            <span class="block"></span></figure>
+
+                                    </a>
+                                    <div class="item-data">
+                                        <h2 class="item-title"><a href="#"></a>
+                                            <a href="#/Detail/{{item.Id}}">{{item.Nom}}</a></h2>
+                                        <span class="item-meta"></span>
+
+                                        <div class="item-block">
+                                            <div class="inner-block">
+                                                <span class="price"><span class="amount">{{item.Prix}}DT</span></span>
+                                                <input type="hidden" class="form-control" ng-model="item.Quantite"  ng-init="item.Quantite=1" >
+        
+                                                <button rel="nofollow" type="button" ng-click='AjouterLivre(item)' data-product_sku="123SU" class="button ajoutpanier add-to-cart add_to_cart_button  product_type_simple  ajax_add_to_cart">Ajout panier</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- End .item-data -->	
+                                </div><!-- End .inner -->
+                            </li>				
+                                    </ul>
+
+
+                                </div><!-- End .featured-left -->
+
+                                <!-- Testimonials section -->
+
+                                <div class="featured-right app">
+
+                                    <h2 class="title-featured">
+                                        livre d'or	 </h2>
+
+                                    <ul class="inner">
+
+
+                                        <li class="testimonial-list">
+                                            <figure class="testimonial-avatar">
+                                                <a title="M. Satrya" href=#>
+                                                    <img class="tokokoo-featured" alt="M. Satrya" src="app/img/journalist.png"></a>	
+                                                <span class="block"></span></figure>
+                                            <blockquote class="testimonial">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, minima, quas aliquam voluptas quia accusamus porro facilis voluptates est</p>
+                                            </blockquote>
+                                            <p class="testimonial-author">
+                                                M. Satrya																				
+                                            </p>
+                                        </li><!-- End .testimonial-list -->
+
+
+                                        <li class="testimonial-list">
+                                            <figure class="testimonial-avatar">
+                                                <a title="Anggi K." href=#><img class="tokokoo-featured" alt="Anggi K." src="app/img/writer.png" ></a>
+                                                <span class="block"></span>
+                                            </figure>
+                                            <blockquote class="testimonial">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, minima, quas aliquam voluptas quia accusamus</p>
+                                            </blockquote>
+                                            <p class="testimonial-author">
+                                                Anggi K.																				</p>
+                                        </li><!-- End .testimonial-list -->
+
+
+                                    </ul>
+
+                                </div><!-- End .featured-right -->
+                            </div>  
+                        </div>
+                    </section>
+                </div>
+    </div>
