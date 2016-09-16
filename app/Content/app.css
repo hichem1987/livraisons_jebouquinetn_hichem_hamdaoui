@@ -1,0 +1,67 @@
+/*
+the author of the project
+Hichem Hamdaoui
+Email:hamdaoui.hichem@gmail.com
+*/
+/* 
+    Created on : 10 juil. 2016, 17:03:29
+    Author     : HP
+*/
+.logo-jebouquinetn {
+    width: 200px;
+    height: 105px;
+}
+
+.center-content {
+    text-align: center;
+}
+#jebouquinte-google-map{
+    width: 250px;
+    height: 250px;
+    position: relative;
+    background-color: rgb(229, 227, 223);
+    overflow: hidden; 
+    margin:auto;
+}
+button.ajoutpanier {
+    margin: auto;
+}
+
+.input_autocomplete {
+    font-family:"Bitter",serif;font-style:italic;
+    font-size:12px;
+    font-size:0.75rem;
+    color:#baab9b;
+    background-color:#fff;
+    width:164px;
+    padding-top:6px;
+    padding-bottom:6px;
+    line-height:20px !important;
+    border-color:#ce5c45 !important
+}
+.angucomplete-holder{
+
+    box-shadow: none;
+    box-sizing: border-box;
+    display: inline-block;
+    height: auto;
+    /*padding: 3px 4px;*/
+    margin-right: 8px;
+
+}
+.input-autocomplete {
+    width: 100%;
+    border: 1px solid #e0cebd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06) inset;
+    border-radius: 3px;
+}
+@media screen and (min-width:691px) and (max-width:880px){
+    .angucomplete-holder {
+        width: 48% !important;
+    }
+} 
+@media screen and (max-width:690px){
+    .angucomplete-holder{
+        width: 100% !important;
+    }
+} 

@@ -1,0 +1,16 @@
+{
+  "name": "nodejsLab3JeBouquineTn",
+  "version": "0.0.1",
+  "devDependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "jwt-simple": "^0.3.1",
+    "mongoose": "^4.5.4",
+    "morgan": "~1.5.0",
+    "passport": "^0.3.0",
+    "passport-jwt": "^1.2.1",
+    "pow-mongodb-fixtures": "^0.13.0"
+  }
+}
