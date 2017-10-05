@@ -20,7 +20,9 @@ npm install (second time)
 node server.js
 ```
 ### fonctionnalités disponible actuellement
+```
 création compte
 login compte
 ajout produit au panier
 modifier quantité lors du ajout au panier
+```
