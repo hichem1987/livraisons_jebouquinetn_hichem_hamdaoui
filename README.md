@@ -12,11 +12,8 @@ app/js/constants.js
 ### Commandes nécessaires pour l'exécution du projet
 ```
 npm install
-```
 cd api (répertoire nodeJs)
-```
 npm install (second time)
-```
 node server.js
 ```
 ### fonctionnalités disponible actuellement
